@@ -1,5 +1,5 @@
-class Movies {
-    Movies({
+class MoviesModel {
+    MoviesModel({
         required this.page,
         required this.results,
         required this.totalPages,
@@ -11,7 +11,7 @@ class Movies {
     final int totalPages;
     final int totalResults;
 
-    factory Movies.fromJson(Map<String, dynamic> json) => Movies(
+    factory MoviesModel.fromJson(Map<String, dynamic> json) => MoviesModel(
         page: json["page"],
         results: List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
         totalPages: json["total_pages"],
