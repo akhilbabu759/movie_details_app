@@ -40,7 +40,7 @@ class HomeCard extends StatelessWidget {
               height: 140,
               width: 140,
               child: Image.network(
-                'https://image.tmdb.org/t/p/w500${imag}',
+                'https://image.tmdb.org/t/p/w500$imag',
                 // '${BaseUrl().baseurl}3$imag'
                 
                 fit: BoxFit.scaleDown,

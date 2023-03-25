@@ -1,4 +1,6 @@
 import 'package:cinephile/screen/home/controller/home_controller.dart';
+import 'package:cinephile/screen/movie_details/model/movie_details_model.dart';
+import 'package:cinephile/screen/movie_details/view/movie_details.dart';
 import 'package:cinephile/screen/search/view/search.dart';
 import 'package:flutter/material.dart';
 
@@ -12,9 +14,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final homecontrol=Get.put(HomeControll());
+    homecontrol.getMovieList();
     return GetBuilder<HomeControll>(
       builder: (controller) {
-        return homecontrol.isLoding == true.obs
+        return homecontrol.isLoding == true
             ? const Center(
                 child: CircularProgressIndicator(
                   color: Colors.white,
@@ -54,7 +57,11 @@ class HomePage extends StatelessWidget {
                   crossAxisCount: 2,
                   crossAxisSpacing: 5,
                   mainAxisSpacing: 5,
-                  childAspectRatio: 1 / 1.5), itemBuilder:(context, index) => HomeCard(imag:homecontrol.movieList[index].posterPath ,text: homecontrol.movieList[index].title), ))        
+                  childAspectRatio: 1 / 1.5), itemBuilder:(context, index) => GestureDetector(onTap: () {
+                    // final model=SingleMovieDetails(cast: homecontrol.movieList[index].genreIds, title: homecontrol.movieList[index].title, description: homecontrol.movieList[index].overview, genre: homecontrol.movieList[index]., release_date: homecontrol.movieList[index].releaseDate, img: homecontrol.movieList[index].backdropPath);
+                    Get.to(MovieDetails(id: homecontrol.movieList[index].id.toString(),));
+                  },
+                    child: HomeCard(imag:homecontrol.movieList[index].posterPath ,text: homecontrol.movieList[index].title)), ))        
 
         ],
       ) ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'screen/movie_details/view/movie_details.dart';
 import 'screen/splash/view/splash.dart';
 
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MySplash(),
+      home: MovieDetails(id:'1011679' ),
     );
   }
 }

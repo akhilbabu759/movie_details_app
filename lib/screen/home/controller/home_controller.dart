@@ -11,9 +11,10 @@ class HomeControll extends GetxController {
     getMovieList();
     super.onInit();
   }
-  bool isLoding=true;
+ bool isLoding = true;
   List<MoviesModel> movieList=[];
    void getMovieList() async {
+    log('message');
     isLoding = true;
     update();
     await HomeService().getMovie().then((value) {

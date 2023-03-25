@@ -1,27 +1,28 @@
-import 'dart:convert';
 import 'dart:developer';
 
+import 'package:cinephile/common/api_key.dart';
 import 'package:cinephile/common/base_url.dart';
 import 'package:cinephile/common/end_url.dart';
-import 'package:cinephile/screen/home/model/home_model.dart';
+import 'package:cinephile/screen/movie_details/model/movie_details_model.dart';
 import 'package:dio/dio.dart';
-class HomeService{
+
+class DetailsService{
+
   final dio = Dio(BaseOptions());
   final baseurl=BaseUrl().baseurl;
-  final endUrl=EndUrl().getMovie;
-  Future<List<MoviesModel>?> getMovie()async{
-    
+  final endUrl=EndUrl().movieDetails;
+   Future<DetailsMovie?> getMovieDetails(String id)async{
     log(baseurl+endUrl);
     try{
-      Response response =await dio.get(baseurl+endUrl);
+      Response response =await dio.get(baseurl+endUrl+'${id}?api_key=${ApiKey().apiKey}&language=en-US');
        if (response.statusCode == 200 || response.statusCode == 201) {
         log(response.data.toString());
        
 
 // final responseJson = response.data.toString(); // Replace with the JSON string you received
 
-final movieListResponse = MovieListResponse.fromJson(response.data);
-      final movies = movieListResponse.results;
+final movieListResponse = DetailsMovie.fromJson(response.data);
+      final movies = movieListResponse;
 
         //  final List<MoviesModel> movieList=FormData.fromMap(response.data) as List<MoviesModel>;
       //   List data = jsonDecode(response.data).cast<Map<String, dynamic>>();
@@ -36,6 +37,4 @@ final movieListResponse = MovieListResponse.fromJson(response.data);
     return null;
 
   }
-
-
 }
