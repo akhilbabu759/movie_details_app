@@ -1,14 +1,27 @@
+import 'package:cinephile/screen/home/controller/home_controller.dart';
 import 'package:cinephile/screen/search/view/search.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+
+import 'widget/cardView/home_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    final homecontrol=Get.put(HomeControll());
+    return GetBuilder<HomeControll>(
+      builder: (controller) {
+        return homecontrol.isLoding == true.obs
+            ? const Center(
+                child: CircularProgressIndicator(
+                  color: Colors.white,
+                  backgroundColor: Colors.cyan,
+                ),
+              )
+            : Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Cinephile'),
@@ -21,20 +34,44 @@ class HomePage extends StatelessWidget {
         ],
         backgroundColor: const Color.fromARGB(255, 25, 81, 105),
       ),
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: [
-              Color.fromARGB(255, 21, 21, 27),
-              Color.fromARGB(255, 32, 103, 133),
-            ],
-          ),
-        ),
-      ),
+      body:SafeArea(child:Column(
+        children: [ Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: Container(
+                          decoration:  BoxDecoration(
+                              color: Colors.white,
+                              backgroundBlendMode: BlendMode.hardLight,
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(20),
+                                  bottomRight: Radius.circular(20))),
+                          height: Get.height * 0.13,
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            // child:
+                            ))),
+                    Expanded(child: GridView.builder(itemCount: homecontrol.movieList.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 5,
+                  mainAxisSpacing: 5,
+                  childAspectRatio: 1 / 1.5), itemBuilder:(context, index) => HomeCard(imag:homecontrol.movieList[index].posterPath ,text: homecontrol.movieList[index].title), ))        
+
+        ],
+      ) ),
+      //  Container(
+      //   height: double.infinity,
+      //   width: double.infinity,
+      //   decoration: const BoxDecoration(
+      //     gradient: LinearGradient(
+      //       begin: Alignment.topRight,
+      //       end: Alignment.bottomLeft,
+      //       colors: [
+      //         Color.fromARGB(255, 21, 21, 27),
+      //         Color.fromARGB(255, 32, 103, 133),
+      //       ],
+      //     ),
+      //   ),child: ,
+      // ),
       drawer: Drawer(
         child: ListView(
           padding: const EdgeInsets.all(0),
@@ -102,5 +139,6 @@ class HomePage extends StatelessWidget {
         ),
       ), //,
     );
-  }
+  });
+}
 }

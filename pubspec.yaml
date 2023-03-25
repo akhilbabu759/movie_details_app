@@ -41,6 +41,7 @@ dependencies:
   google_fonts: ^4.0.3
   flutter_otp_text_field: ^1.1.1
   dio: ^5.0.3
+  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:
