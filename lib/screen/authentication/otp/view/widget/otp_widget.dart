@@ -65,9 +65,9 @@ class OtpWidget extends StatelessWidget {
               ),
               OtpTextField(
                   focusedBorderColor: TheameValue().kwhite,
-                  fieldWidth: width * 0.165,
+                  fieldWidth: width * 0.1,
                   textStyle: TextStyle(color: TheameValue().kwhite),
-                  numberOfFields: 4,
+                  numberOfFields: 6,
                   borderColor: TheameValue().kwhite,
                   enabledBorderColor: TheameValue().kwhite,
                   borderRadius: BorderRadius.circular(10),
@@ -90,7 +90,7 @@ class OtpWidget extends StatelessWidget {
 
                       // Sign the user in (or link) with the credential
                       await auth.signInWithCredential(credential);
-                      Get.off(const HomePage());
+                      Get.offAll(const HomePage());
                     } catch (e) {
                       log('wrong otp');
                     }

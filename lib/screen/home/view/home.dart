@@ -3,6 +3,8 @@ import 'package:cinephile/screen/movie_details/controller/movie_details_controll
 
 import 'package:cinephile/screen/movie_details/view/movie_details.dart';
 import 'package:cinephile/screen/search/view/search.dart';
+import 'package:cinephile/screen/splash/view/splash.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -130,7 +132,15 @@ class HomePage extends StatelessWidget {
                       leading: const Icon(Icons.logout),
                       title: const Text('LogOut'),
                       onTap: () {
-                        Navigator.pop(context);
+                        Get.defaultDialog(title: 'LogOut',
+                          middleText: 'are you sure???',textConfirm: 'yes',textCancel: 'no',
+                          onConfirm: () {
+                            FirebaseAuth.instance.signOut();
+                            Get.to(const MySplash());
+                          } ,
+                          );
+                        
+                       
                       },
                     ),
                   ],

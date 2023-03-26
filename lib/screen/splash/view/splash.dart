@@ -1,6 +1,10 @@
+import 'dart:developer';
+
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cinephile/core/const.dart';
 import 'package:cinephile/screen/authentication/sigin/view/signin.dart';
+import 'package:cinephile/screen/home/view/home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class MySplash extends StatelessWidget {
@@ -8,10 +12,12 @@ class MySplash extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final auth=FirebaseAuth.instance.currentUser;
+    log(auth.toString());
     Future.delayed(
       const Duration(seconds: 4),
       () => Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => const SignIn(),
+        builder: (context) =>auth==null? const SignIn():const HomePage(),
       )),
     );
     return Scaffold(
