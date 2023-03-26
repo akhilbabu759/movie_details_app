@@ -14,19 +14,17 @@ class DetailsService{
    Future<DetailsMovie?> getMovieDetails(String id)async{
     log(baseurl+endUrl);
     try{
-      Response response =await dio.get(baseurl+endUrl+'${id}?api_key=${ApiKey().apiKey}&language=en-US');
+      Response response =await dio.get('$baseurl$endUrl$id?api_key=${ApiKey().apiKey}&language=en-US');
        if (response.statusCode == 200 || response.statusCode == 201) {
         log(response.data.toString());
        
 
-// final responseJson = response.data.toString(); // Replace with the JSON string you received
+
 
 final movieListResponse = DetailsMovie.fromJson(response.data);
       final movies = movieListResponse;
 
-        //  final List<MoviesModel> movieList=FormData.fromMap(response.data) as List<MoviesModel>;
-      //   List data = jsonDecode(response.data).cast<Map<String, dynamic>>();
-        // final List<MoviesModel> movieList=(response.data ).map((e) =>  MoviesModel.fromJson(e)).toList();
+
       return movies;
        }else{
         return null;

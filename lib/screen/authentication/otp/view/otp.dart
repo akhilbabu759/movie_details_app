@@ -1,4 +1,4 @@
-import 'package:cinephile/screen/authentication/otp/view/widget/otpWidget.dart';
+import 'package:cinephile/screen/authentication/otp/view/widget/otp_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,6 +1,6 @@
 import 'package:cinephile/screen/home/controller/home_controller.dart';
 import 'package:cinephile/screen/movie_details/controller/movie_details_controller.dart';
-import 'package:cinephile/screen/movie_details/model/movie_details_model.dart';
+
 import 'package:cinephile/screen/movie_details/view/movie_details.dart';
 import 'package:cinephile/screen/search/view/search.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +43,7 @@ class HomePage extends StatelessWidget {
                   Expanded(
                       child: GridView.builder(
                     itemCount: homecontrol.movieList.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         crossAxisSpacing: 5,
                         mainAxisSpacing: 5,
@@ -53,7 +53,7 @@ class HomePage extends StatelessWidget {
                           // final model=SingleMovieDetails(cast: homecontrol.movieList[index].genreIds, title: homecontrol.movieList[index].title, description: homecontrol.movieList[index].overview, genre: homecontrol.movieList[index]., release_date: homecontrol.movieList[index].releaseDate, img: homecontrol.movieList[index].backdropPath);
                           final movieDetailsC =
                               Get.put(MovieDetailsController());
-                          movieDetailsC.GetMovieDetails(
+                          movieDetailsC.getMovieDetails(
                               homecontrol.movieList[index].id.toString());
                           Get.to(MovieDetails(
                             id: homecontrol.movieList[index].id.toString(),

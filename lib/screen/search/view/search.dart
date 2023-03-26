@@ -1,9 +1,8 @@
-import 'dart:developer';
+
 
 import 'package:cinephile/screen/home/view/widget/cardView/home_card.dart';
 import 'package:cinephile/screen/search/controller/search_controller.dart';
-import 'package:cinephile/screen/search/model/search_model.dart';
-import 'package:cinephile/screen/search/view/one_product_details.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -33,7 +32,7 @@ class SearchPage extends StatelessWidget {
           ),
           padding: const EdgeInsets.only(top: 20.0),
           child: Column(
-            children: [SizedBox(height: 20,),
+            children: [const SizedBox(height: 20,),
               TextFormField(controller:textC ,onChanged: (value) =>searchC.getMovieList(value) ,
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
@@ -67,7 +66,7 @@ class SearchPage extends StatelessWidget {
               :
                        GridView.builder(
                     itemCount: searchC.movieList[0]!.results.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         crossAxisSpacing: 5,
                         mainAxisSpacing: 5,

@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:cinephile/core/const.dart';
 import 'package:cinephile/screen/authentication/otp/view/otp.dart';
-import 'package:cinephile/screen/authentication/otp/view/widget/otpWidget.dart';
+import 'package:cinephile/screen/authentication/otp/view/widget/otp_widget.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 

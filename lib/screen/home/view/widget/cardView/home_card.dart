@@ -1,5 +1,5 @@
 
-import 'package:cinephile/common/base_url.dart';
+
 import 'package:cinephile/core/const.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,7 +28,7 @@ class HomeCard extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              decoration: BoxDecoration(color: Color.fromARGB(255, 32, 103, 133),boxShadow: [BoxShadow(blurRadius: 5,color: TheameValue().kwhite),BoxShadow(blurRadius: 5,color: TheameValue().kblack)],),
+              decoration: BoxDecoration(color: const Color.fromARGB(255, 32, 103, 133),boxShadow: [BoxShadow(blurRadius: 5,color: TheameValue().kwhite),BoxShadow(blurRadius: 5,color: TheameValue().kblack)],),
               height: Get.height*0.05,
               width: 140,
               
@@ -42,7 +42,7 @@ class HomeCard extends StatelessWidget {
             SizedBox(
               height: Get.height*0.28,
               width: 140,
-              child:imag=='null' ? Text('image not available',style: TextStyle(color: Colors.red),)
+              child:imag=='null' ? const Text('image not available',style: TextStyle(color: Colors.red),)
          : Image.network(
                 'https://image.tmdb.org/t/p/w500$imag',
                 // '${BaseUrl().baseurl}3$imag'

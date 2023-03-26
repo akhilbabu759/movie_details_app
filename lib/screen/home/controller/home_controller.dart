@@ -7,20 +7,19 @@ import 'package:get/get.dart';
 class HomeControll extends GetxController {
   @override
   void onInit() {
-    // TODO: implement onInit
     getMovieList();
     super.onInit();
   }
- bool isLoding = true;
-  List<MoviesModel> movieList=[];
-   void getMovieList() async {
+
+  bool isLoding = true;
+  List<MoviesModel> movieList = [];
+  void getMovieList() async {
     log('message');
     isLoding = true;
     update();
     await HomeService().getMovie().then((value) {
       log(value.toString());
       if (value != null) {
-  
         movieList = value;
         update();
         isLoding = false;
@@ -34,5 +33,4 @@ class HomeControll extends GetxController {
     isLoding = false;
     update();
   }
-
 }

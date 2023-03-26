@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:cinephile/screen/home/model/home_model.dart';
+
 import 'package:cinephile/screen/search/model/search_model.dart';
 import 'package:cinephile/screen/search/service/search_service.dart';
 import 'package:get/get.dart';
