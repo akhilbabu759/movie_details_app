@@ -1,4 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:cinephile/core/const.dart';
 import 'package:cinephile/screen/authentication/sigin/view/signin.dart';
 import 'package:flutter/material.dart';
 
@@ -17,14 +18,11 @@ class MySplash extends StatelessWidget {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        decoration: const BoxDecoration(
+        decoration:  BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
-            colors: [
-              Color.fromARGB(255, 21, 21, 27),
-              Color.fromARGB(255, 32, 103, 133),
-            ],
+            colors: TheameValue().appColor,
           ),
         ),
         child: Column(
@@ -36,7 +34,7 @@ class MySplash extends StatelessWidget {
                   duration: const Duration(seconds: 3),
                   'Cinephile',
                   textStyle:
-                      const TextStyle(fontSize: 40.0, color: Colors.white),
+                       TextStyle(fontSize: 40.0, color: TheameValue().kwhite),
                 ),
               ],
               totalRepeatCount: 1,

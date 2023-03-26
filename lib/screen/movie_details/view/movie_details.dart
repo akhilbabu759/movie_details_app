@@ -19,14 +19,14 @@ class MovieDetails extends StatelessWidget {
     DetailControl.GetMovieDetails(id);
     return GetBuilder<MovieDetailsController>(builder: (controller) {
       return
-          // DetailControl.isLoding == true
-          //     ? const Center(
-          //         child: CircularProgressIndicator(
-          //           color: Colors.white,
-          //           backgroundColor: Colors.cyan,
-          //         ),
-          //       )
-          //     :
+          DetailControl.isLoding == true
+              ? const Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.white,
+                    backgroundColor: Colors.cyan,
+                  ),
+                )
+              :
           Scaffold(
               appBar: AppBar(
                 leading: IconButton(
@@ -46,8 +46,9 @@ class MovieDetails extends StatelessWidget {
               body: Column(children: [
                 Container(
                   child: Image.network(
-                      'https://image.tmdb.org/t/p/w500/2Eewgp7o5AU1xCataDmiIL2nYxd.jpg'
-                      // ${DetailControl.movieDetails.backdropPath}
+                       'https://image.tmdb.org/t/p/w500/${DetailControl.movieDetails.backdropPath}'
+                      // 2Eewgp7o5AU1xCataDmiIL2nYxd.jpg'
+                     
                       ),
                 ),
                 Padding(

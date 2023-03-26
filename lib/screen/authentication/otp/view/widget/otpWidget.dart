@@ -1,8 +1,14 @@
-import 'package:cinephile/screen/authentication/signup/view/signup.dart';
+import 'dart:developer';
+
+
+import 'package:cinephile/core/const.dart';
+import 'package:cinephile/screen/authentication/sigin/view/signin.dart';
+import 'package:cinephile/screen/home/view/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 
@@ -15,9 +21,12 @@ class OtpWidget extends StatelessWidget {
 
   final double height;
   final double width;
+  static String verify='';
 
   @override
   Widget build(BuildContext context) {
+    FirebaseAuth auth = FirebaseAuth.instance;
+     String smsCode='';
     return Padding(
       padding: EdgeInsets.only(
         top: height * 0.15,
@@ -35,44 +44,60 @@ class OtpWidget extends StatelessWidget {
                   style: GoogleFonts.actor(
                       textStyle: const TextStyle(fontSize: 30),
                       fontWeight: FontWeight.w100,
-                      color: Colors.white),
+                      color: TheameValue().kwhite),
                 ),
               ),
               const SizedBox(
                 height: 05,
               ),
-              const Padding(
-                padding: EdgeInsets.all(5),
+               Padding(
+                padding: const EdgeInsets.all(5),
                 child: Text(
                   'An authentication code has been sent to your\nphone number : phone',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
+                  style: TextStyle(color: TheameValue().kwhite, fontSize: 16),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.all(10.0),
+               Padding(
+                padding: const EdgeInsets.all(10.0),
                 child: Text('Please enter your OTP below!',
-                    style: TextStyle(color: Colors.white, fontSize: 16)),
+                    style: TextStyle(color: TheameValue().kwhite, fontSize: 16)),
               ),
               const SizedBox(
                 height: 20,
               ),
               OtpTextField(
-                  focusedBorderColor: Colors.white,
+                  focusedBorderColor: TheameValue().kwhite,
                   fieldWidth: width * 0.165,
-                  textStyle: const TextStyle(color: Colors.white),
+                  textStyle:  TextStyle(color: TheameValue().kwhite),
                   numberOfFields: 4,
-                  borderColor: Colors.white,
-                  enabledBorderColor: Colors.white,
+                  borderColor: TheameValue().kwhite,
+                  enabledBorderColor: TheameValue().kwhite,
                   borderRadius: BorderRadius.circular(10),
                   showFieldAsBox: true,
-                  onSubmit: (String verificationCode) {}),
+                  onSubmit: (String verificationCode) {
+                    smsCode=verificationCode;
+
+                  }),
               SizedBox(
                 height: height * 0.05,
               ),
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () async{
+                    try{
+                       PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: OtpWidget. verify, smsCode: smsCode);
+
+    // Sign the user in (or link) with the credential
+    await auth.signInWithCredential(credential);
+    Get.off(const HomePage());
+
+                    }catch(e){
+                      log('wrong otp');
+
+                    }
+                    
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.white10,
@@ -80,10 +105,10 @@ class OtpWidget extends StatelessWidget {
                     ),
                     height: height * 0.06,
                     width: width * 0.9,
-                    child: const Center(
+                    child:  Center(
                       child: Text(
                         'CONTINUE',
-                        style: TextStyle(color: Colors.white, fontSize: 13),
+                        style: TextStyle(color: TheameValue().kwhite, fontSize: 13),
                       ),
                     ),
                   ),
@@ -96,7 +121,7 @@ class OtpWidget extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: GestureDetector(
                   onTap: () {
-                    Get.to(() => const SignUp());
+                    Get.to(() => const SignIn());
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -105,10 +130,10 @@ class OtpWidget extends StatelessWidget {
                     ),
                     height: height * 0.06,
                     width: width * 0.9,
-                    child: const Center(
+                    child:  Center(
                       child: Text(
                         "Didn't get Otp?",
-                        style: TextStyle(color: Colors.white, fontSize: 14),
+                        style: TextStyle(color: TheameValue().kwhite, fontSize: 14),
                       ),
                     ),
                   ),
